@@ -6,12 +6,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Blight implements Runnable {
 
-    int id;
-    boolean phylactery = true;
-    String website;
+    private int id;
+    private final AtomicBoolean phylactery = new AtomicBoolean(false);
+    private String website;
+    private Thread worker;
 
     public Blight(int id, String website) {
         this.id = id;
@@ -20,14 +22,26 @@ public class Blight implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Blighter " + this.id + " blighting website: " + this.website);
-        while(phylactery) {
-            blightCall();
+        //System.out.println("Blight Thrower " + this.id + ": Blighting " + this.website);
+        phylactery.set(true);
+        while(phylactery.get()) {
+            try {
+                Thread.sleep(1);
+                blightCall();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.out.println("Blight Thrower: I was interrupted!");
+            }
         }
     }
 
+    public void start() {
+        worker = new Thread(this);
+        worker.start();
+    }
+
     public void stop() {
-        phylactery = false;
+        phylactery.set(false);
     }
 
     public void blightCall() {
@@ -46,7 +60,8 @@ public class Blight implements Runnable {
             }
             bufferedReader.close();
         } catch (IOException e) {
-            System.out.println("The Blight Caller feigned death!");
+            //System.out.println("Blight Thrower " + this.id + ": Website: " + this.website + " has been blighted!");
+            ;
         }
     }
 }
