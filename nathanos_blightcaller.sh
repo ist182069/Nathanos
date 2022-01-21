@@ -1,1 +1,1 @@
-./gradlew runWithJavaExec
+./gradlew runWithExec

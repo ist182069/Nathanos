@@ -14,11 +14,11 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-task runWithJavaExec(type: JavaExec) {
+task runWithExec(type: Exec) {
+    dependsOn build
     group = "Execution"
-    description = "Run the main class with JavaExecTask"
-    classpath = sourceSets.main.runtimeClasspath
-    main = 'jestb.nathanos.Main'
+    description = "Run Nathanos Main"
+    commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), 'jestb.nathanos.Main', 20, 'https://agml.pt/'
 }
 
 test {

@@ -10,13 +10,14 @@ public class Refresher {
     ArrayList<Blight> blightCaller = new ArrayList<Blight>();
 
     public Refresher(int thread_num, int time, String website) {
+        System.out.println("Nathanos: Greetings \"Hacker\".");
         this.thread_num = thread_num;
         this.time = time;
         this.website = website;
     }
 
     public void prepare() {
-        System.out.println("Nathanos: I am preparing the Blight deployment for " + this.website + ".");
+        System.out.println("Nathanos: I am preparing " + this.thread_num + " Blight Throwers for " + this.website + ".");
         for(int i = 0; i < this.thread_num; i++) {
             Blight runnable = new Blight(i, this.website);
             blightCaller.add(runnable);
