@@ -7,7 +7,7 @@ public class Main {
     public static final void main(String argv[])
     {
         if(argv.length==2) {
-            thread_num = 100;
+            thread_num = 128;
         }
         else if(argv.length==3) {
             thread_num = Integer.parseInt(argv[2]);

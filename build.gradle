@@ -14,11 +14,11 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-task runWithExec(type: Exec) {
+task nathanos(type: Exec) {
     dependsOn build
     group = "Execution"
-    description = "Run Nathanos Main"
-    commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), 'jestb.nathanos.Main', 20, 'https://agml.pt/'
+    description = "Run Nathanos"
+    commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), 'jestb.nathanos.Main', time, insert-website
 }
 
 test {
