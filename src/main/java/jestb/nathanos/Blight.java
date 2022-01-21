@@ -10,6 +10,7 @@ import java.net.URL;
 public class Blight implements Runnable {
 
     int id;
+    boolean phylactery = true;
     String website;
 
     public Blight(int id, String website) {
@@ -20,9 +21,13 @@ public class Blight implements Runnable {
     @Override
     public void run() {
         System.out.println("Blighter " + this.id + " blighting website: " + this.website);
-        while(true) {
+        while(phylactery) {
             blightCall();
         }
+    }
+
+    public void stop() {
+        phylactery = false;
     }
 
     public void blightCall() {
