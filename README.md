@@ -1,6 +1,6 @@
-# Nathanos, the Blightcaller
+# Nathanos
 
-In this repository I present to you Nathanos Blightcaller, a multi-thread website refreshing tool.
+In this repository a multi-thread website refreshing tool.
 
 ## Configuration
 
